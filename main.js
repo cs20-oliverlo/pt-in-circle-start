@@ -21,6 +21,21 @@ window.addEventListener("load", draw);
 
 function draw() {
   // LOGIC - test if mouse in circles
+  if (ptnInCircle(mouseX, mouseY, 150, 150, 100)) {
+    ctx.fillStyle = "red";
+    ctx.fillRect(0, 0, cnv.width, cnv.height);
+  } else if (ptnInCircle(mouseX, mouseY, 475, 125, 60)) {
+    ctx.fillStyle = "green";
+    ctx.fillRect(0, 0, cnv.width, cnv.height);
+  } else if (mouseX, mouseY, 350, 275, 40) {
+    ctx.fillStyle = "blue";
+    ctx.fillRect(0, 0, cnv.width, cnv.height);
+  } else if (ptnInCircle(mouseX, mouseY, blackCircle.x, blackCircle.y, blackCircle.r)) {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, cnv.width, cnv.height);
+  } else {
+    ctx.clearRect(0, 0, cnv.width, cnv.height);
+  }
 
   // DRAW - draw circles
   ctx.clearRect(0, 0, cnv.width, cnv.height);
@@ -58,4 +73,12 @@ function fillCircle(x, y, r) {
   ctx.beginPath();
   ctx.arc(x, y, r, 0, 2 * Math.PI);
   ctx.fill();
+}
+
+function ptnInCircle(x1, y1, x, y, r) {
+  if (Math.sqrt(Math.pow((x1 - x), 2) + Math.pow((y1 - y), 2)) <= r) {
+    return true;
+  } else {
+    return false;
+  }
 }
