@@ -10,11 +10,7 @@ cnv.height = 400;
 let mouseX;
 let mouseY;
 
-let blackCircle = {
-  x: Math.random() * cnv.width,
-  y: Math.random() * cnv.height,
-  r: Math.random() * 50 + 10,
-};
+let blackCircle = newRandomCircle();
 
 // Call draw function once all page resources have loaded
 window.addEventListener("load", draw);
@@ -27,9 +23,12 @@ function draw() {
     document.body.style.backgroundColor = "green";
   } else if (ptnInCircle(mouseX, mouseY, 350, 275, 40)) {
     document.body.style.backgroundColor = "blue";
-  } else if (ptnInCircle(mouseX, mouseY, blackCircle.x, blackCircle.y, blackCircle.r)) {
-    document.body.style.backgroundColor = "black";
-    newRandomCircle();
+  } else {
+    document.body.style.backgroundColor = "white";
+  }
+
+  if (ptnInCircle(mouseX, mouseY, blackCircle.x, blackCircle.y, blackCircle.r)) {
+    blackCircle = newRandomCircle();
   }
 
   // DRAW - draw circles
@@ -79,7 +78,7 @@ function ptnInCircle(x1, y1, x, y, r) {
 }
 
 function newRandomCircle() {
-  blackCircle = {
+  return {
     x: Math.random() * cnv.width,
     y: Math.random() * cnv.height,
     r: Math.random() * 50 + 10,
